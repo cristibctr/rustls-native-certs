@@ -29,9 +29,9 @@ use std::{env, fmt, fs, io};
 use pki_types::pem::{self, PemObject};
 use pki_types::CertificateDer;
 
-#[cfg(all(unix, not(target_os = "macos")))]
+#[cfg(all(any(unix, target_vendor = "wasmer"), not(target_os = "macos")))]
 mod unix;
-#[cfg(all(unix, not(target_os = "macos")))]
+#[cfg(all(any(unix, target_vendor = "wasmer"), not(target_os = "macos")))]
 use unix as platform;
 
 #[cfg(windows)]
